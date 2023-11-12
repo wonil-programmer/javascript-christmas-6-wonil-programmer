@@ -1,5 +1,14 @@
+import OrderController from "../src/controller/OrderController.js";
+
 class App {
-  async run() {}
+  #orderBehavior;
+
+  constructor() {
+    this.#orderBehavior = new OrderController();
+  }
+  async run() {
+    await this.#orderBehavior.placeOrder();
+  }
 }
 
 export default App;
