@@ -4,12 +4,14 @@ import Calculator from "../utils/Calculator.js";
 class OrderController {
   #visitDate;
   #isWeekend;
+  #orderInfo;
 
   constructor() {}
 
   async placeOrder() {
     await this.setVisitDate();
-    this.setVisitDayOfWeek(this.#visitDate);
+    this.setIsWeekend(this.#visitDate);
+    this.setOrderInfo();
   }
 
   async setVisitDate() {
@@ -18,6 +20,10 @@ class OrderController {
 
   setIsWeekend(date) {
     this.#isWeekend = Calculator.calculateIsWeekend(date);
+  }
+
+  async setOrderInfo() {
+    this.#orderInfo = await InputView.readMenu();
   }
 }
 
