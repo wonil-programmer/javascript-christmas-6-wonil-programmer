@@ -5,6 +5,9 @@ const DisountEvent = {
   applySpecial() {
     return 1_000;
   },
+  applyWeekend(mainDishCount) {
+    return mainDishCount * 2_023;
+  },
 };
 
 export default DisountEvent;

@@ -25,7 +25,7 @@ const InputView = {
         const orderedMenu = new Map();
         menuArr.forEach((menu) => {
           const [menuName, menuQty] = menu.split(SEPARATOR.dash);
-          orderedMenu.set(menuName, menuQty);
+          orderedMenu.set(menuName, Number(menuQty));
         });
 
         return orderedMenu;

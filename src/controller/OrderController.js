@@ -35,6 +35,7 @@ class OrderController {
     this.calculateTotalSum();
     if (this.#totalSum >= 10_000) {
       const totalDiscount = this.calculateDiscount();
+      console.log(totalDiscount);
     }
   }
 
@@ -56,6 +57,17 @@ class OrderController {
     });
   }
 
+  countMainDish() {
+    let mainDishCount = 0;
+    this.#orderInfo.forEach((qty, name) => {
+      if (this.getMenuInfo(name).category === "메인") {
+        mainDishCount += qty;
+      }
+    });
+
+    return mainDishCount;
+  }
+
   getMenuInfo(name) {
     return this.#servedMenus.find((menu) => menu.name === name);
   }
@@ -67,6 +79,10 @@ class OrderController {
     }
     if (SPECIAL_DATE.includes(this.#visitDate)) {
       discountSum += DisountEvent.applySpecial();
+    }
+    if (this.#isWeekend) {
+      const mainDishQty = this.countMainDish();
+      discountSum += DisountEvent.applyWeekend(mainDishQty);
     }
     return discountSum;
   }
