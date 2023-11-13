@@ -8,7 +8,7 @@ class Menu {
 
 export class Appetizer extends Menu {
   constructor(name, price) {
-    super(name, price, "에피타이저");
+    super(name, price, "애피타이저");
   }
 }
 
