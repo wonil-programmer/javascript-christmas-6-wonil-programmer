@@ -46,7 +46,7 @@ class OrderController {
       const totalDiscount = this.calculateDiscount();
     }
     this.chooseGift();
-    console.log(this.#benefitHistory);
+    const totalBenefit = this.calculateTotalBenefit();
   }
 
   async setVisitDate() {
@@ -131,6 +131,15 @@ class OrderController {
     });
 
     this.#benefitHistory.set(EVENT_LIST.gift, giftPrice);
+  }
+
+  calculateTotalBenefit() {
+    let benefitSum = 0;
+    for (let benefit of this.#benefitHistory.values()) {
+      benefitSum += benefit;
+    }
+
+    return benefitSum;
   }
 }
 
