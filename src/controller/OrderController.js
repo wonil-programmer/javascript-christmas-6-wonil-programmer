@@ -65,6 +65,9 @@ class OrderController {
     if (this.#visitDate <= 25) {
       discountSum += DisountEvent.applyXMasDDay(this.#visitDate);
     }
+    if (SPECIAL_DATE.includes(this.#visitDate)) {
+      discountSum += DisountEvent.applySpecial();
+    }
     return discountSum;
   }
 }

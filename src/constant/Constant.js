@@ -15,6 +15,8 @@ export const MENU_INFO = [
   { name: "샴페인", price: 25000, category: "음료" },
 ];
 
+export const SPECIAL_DATE = [3, 10, 17, 24, 25, 31];
+
 export const ALERT_MESSAGE = Object.freeze({
   greetings: "안녕하세요! 우테코 식당 {12}월 이벤트 플래너입니다.\n",
   result: "{12}월 {3}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n",
