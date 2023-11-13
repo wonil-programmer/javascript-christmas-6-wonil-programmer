@@ -31,4 +31,5 @@ export const ERROR_MESSAGE = Object.freeze({
 
 export const SEPARATOR = Object.freeze({
   comma: ",",
+  dash: "-",
 });

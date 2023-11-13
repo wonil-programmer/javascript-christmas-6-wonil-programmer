@@ -20,10 +20,17 @@ const InputView = {
   async readMenu() {
     while (true) {
       try {
-        const menu = await Console.readLineAsync(ASK_MESSAGE.menuInfo);
-        const menuArr = menu.split(SEPARATOR.comma);
+        const menuInput = await Console.readLineAsync(ASK_MESSAGE.menuInfo);
+        const menuArr = menuInput.split(SEPARATOR.comma);
+        const orderedMenu = new Map();
+        menuArr.forEach((menu) => {
+          const menuMetaData = menu.split(SEPARATOR.dash);
+          let menuName = menuMetaData[0];
+          let menuQty = Number(menuMetaData[1]);
+          orderedMenu.set(menuName, menuQty);
+        });
 
-        // return menuList;
+        return orderedMenu;
       } catch (error) {
         OutputView.printErrorMessage(error);
       }
