@@ -6,6 +6,7 @@ import {
   SPECIAL_DATE,
   EVENT_LIST,
   GIFT_LIST,
+  BADGE,
 } from "../constant/Constant.js";
 import DisountEvent from "../DisountEvent.js";
 
@@ -18,6 +19,7 @@ class OrderController {
   #totalDiscount;
   #benefitHistory;
   #gift;
+  #badge;
 
   constructor() {
     const appetizers = MENU_INFO.filter(
@@ -36,6 +38,7 @@ class OrderController {
     this.#totalSum = 0;
     this.#benefitHistory = new Map();
     this.#gift = new Map();
+    this.#badge = null;
   }
 
   async placeOrder() {
@@ -46,8 +49,10 @@ class OrderController {
     if (this.#totalSum >= 10_000) {
       this.#totalDiscount = this.calculateDiscount();
       this.chooseGift();
+      const totalBenefit = this.calculateTotalBenefit();
+      this.awardBadge(totalBenefit);
     }
-    const totalBenefit = this.calculateTotalBenefit();
+    console.log(this.#badge);
     const payment = this.calculatePayment();
   }
 
@@ -146,6 +151,21 @@ class OrderController {
 
   calculatePayment() {
     return this.#totalSum - this.#totalDiscount;
+  }
+
+  awardBadge(benefit) {
+    if (benefit >= 20_000) {
+      this.#badge = BADGE.santa;
+      return;
+    }
+    if (benefit >= 10_000) {
+      this.#badge = BADGE.tree;
+      return;
+    }
+    if (benefit >= 5_000) {
+      this.#badge = BADGE.star;
+      return;
+    }
   }
 }
 

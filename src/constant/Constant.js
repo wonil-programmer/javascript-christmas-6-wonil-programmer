@@ -21,6 +21,12 @@ export const GIFT_LIST = [
   { name: "샴페인 1개", price: 25_000, conditionPrice: 120_000 },
 ];
 
+export const BADGE = Object.freeze({
+  star: "별",
+  tree: "트리",
+  santa: "산타",
+});
+
 export const EVENT_LIST = Object.freeze({
   xMasDDay: "크리스마스 디데이 할인",
   weekday: "평일 할인",
