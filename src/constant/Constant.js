@@ -17,6 +17,16 @@ export const MENU_INFO = [
 
 export const SPECIAL_DATE = [3, 10, 17, 24, 25, 31];
 
+export const GIFT_LIST = [{ name: "샴페인", price: 25000 }];
+
+export const EVENT_LIST = Object.freeze({
+  xMasDDay: "크리스마스 디데이 할인",
+  weekday: "평일 할인",
+  weekend: "주말 할인",
+  special: "특별 할인",
+  gift: "증정 이벤트",
+});
+
 export const ALERT_MESSAGE = Object.freeze({
   greetings: "안녕하세요! 우테코 식당 {12}월 이벤트 플래너입니다.\n",
   result: "{12}월 {3}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n",

@@ -8,7 +8,7 @@ const DisountEvent = {
   applyWeekend(mainDishCount) {
     return mainDishCount * 2_023;
   },
-  applyWeekDay(dessertCount) {
+  applyWeekday(dessertCount) {
     return dessertCount * 2_023;
   },
 };

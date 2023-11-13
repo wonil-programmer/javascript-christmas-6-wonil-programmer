@@ -1,7 +1,7 @@
 import InputView from "../InputView.js";
 import Calculator from "../utils/Calculator.js";
 import { Appetizer, MainDish, Drink, Dessert } from "../Model/Menu.js";
-import { MENU_INFO, SPECIAL_DATE } from "../constant/Constant.js";
+import { MENU_INFO, SPECIAL_DATE, EVENT_LIST } from "../constant/Constant.js";
 import DisountEvent from "../DisountEvent.js";
 
 class OrderController {
@@ -10,6 +10,7 @@ class OrderController {
   #servedMenus;
   #orderInfo;
   #totalSum;
+  #benefitHistory;
 
   constructor() {
     const appetizers = MENU_INFO.filter(
@@ -26,6 +27,7 @@ class OrderController {
     );
     this.#servedMenus = [...appetizers, ...mainDishes, ...desserts, ...drinks];
     this.#totalSum = 0;
+    this.#benefitHistory = new Map();
   }
 
   async placeOrder() {
@@ -35,7 +37,6 @@ class OrderController {
     this.calculateTotalSum();
     if (this.#totalSum >= 10_000) {
       const totalDiscount = this.calculateDiscount();
-      console.log(totalDiscount);
     }
   }
 
@@ -86,19 +87,28 @@ class OrderController {
   calculateDiscount() {
     let discountSum = 0;
     if (this.#visitDate <= 25) {
-      discountSum += DisountEvent.applyXMasDDay(this.#visitDate);
+      const xMasDDayDiscount = DisountEvent.applyXMasDDay(this.#visitDate);
+      this.#benefitHistory.set(EVENT_LIST.xMasDDay, xMasDDayDiscount);
+      discountSum += xMasDDayDiscount;
     }
     if (SPECIAL_DATE.includes(this.#visitDate)) {
-      discountSum += DisountEvent.applySpecial();
+      const specialDiscount = DisountEvent.applySpecial();
+      this.#benefitHistory.set(EVENT_LIST.special, specialDiscount);
+      discountSum += specialDiscount;
     }
     if (this.#isWeekend) {
       const mainDishQty = this.countMainDish();
-      discountSum += DisountEvent.applyWeekend(mainDishQty);
+      const weekendDiscount = DisountEvent.applyWeekend(mainDishQty);
+      this.#benefitHistory.set(EVENT_LIST.weekend, weekendDiscount);
+      discountSum += weekendDiscount;
     }
     if (!this.#isWeekend) {
       const dessertQty = this.countDessert();
-      discountSum += DisountEvent.applyWeekDay(dessertQty);
+      const weekdayDiscount = DisountEvent.applyWeekday(dessertQty);
+      this.#benefitHistory.set(EVENT_LIST.weekday, weekdayDiscount);
+      discountSum += weekdayDiscount;
     }
+
     return discountSum;
   }
 }
