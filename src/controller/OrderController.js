@@ -32,6 +32,9 @@ class OrderController {
     this.setIsWeekend(this.#visitDate);
     await this.setOrderInfo();
     this.calculateTotalSum();
+    if (this.#totalSum >= 10_000) {
+      const totalDiscount = this.calculateDiscount();
+    }
   }
 
   async setVisitDate() {
@@ -54,6 +57,12 @@ class OrderController {
 
   getMenuInfo(name) {
     return this.#servedMenus.find((menu) => menu.name === name);
+  }
+
+  calculateDiscount() {
+    let discountSum = 0;
+
+    return discountSum;
   }
 }
 
