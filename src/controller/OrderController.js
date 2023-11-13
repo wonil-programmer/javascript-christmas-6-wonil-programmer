@@ -2,6 +2,7 @@ import InputView from "../InputView.js";
 import Calculator from "../utils/Calculator.js";
 import { Appetizer, MainDish, Drink, Dessert } from "../Model/Menu.js";
 import { MENU_INFO, SPECIAL_DATE } from "../constant/Constant.js";
+import DisountEvent from "../DisountEvent.js";
 
 class OrderController {
   #visitDate;
@@ -61,7 +62,9 @@ class OrderController {
 
   calculateDiscount() {
     let discountSum = 0;
-
+    if (this.#visitDate <= 25) {
+      discountSum += DisountEvent.applyXMasDDay(this.#visitDate);
+    }
     return discountSum;
   }
 }
