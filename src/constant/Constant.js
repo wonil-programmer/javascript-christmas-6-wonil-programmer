@@ -17,7 +17,9 @@ export const MENU_INFO = [
 
 export const SPECIAL_DATE = [3, 10, 17, 24, 25, 31];
 
-export const GIFT_LIST = [{ name: "샴페인", price: 25000 }];
+export const GIFT_LIST = [
+  { name: "샴페인 1개", price: 25_000, conditionPrice: 120_000 },
+];
 
 export const EVENT_LIST = Object.freeze({
   xMasDDay: "크리스마스 디데이 할인",

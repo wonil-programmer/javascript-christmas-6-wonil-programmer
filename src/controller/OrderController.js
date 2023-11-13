@@ -1,7 +1,12 @@
 import InputView from "../InputView.js";
 import Calculator from "../utils/Calculator.js";
 import { Appetizer, MainDish, Drink, Dessert } from "../Model/Menu.js";
-import { MENU_INFO, SPECIAL_DATE, EVENT_LIST } from "../constant/Constant.js";
+import {
+  MENU_INFO,
+  SPECIAL_DATE,
+  EVENT_LIST,
+  GIFT_LIST,
+} from "../constant/Constant.js";
 import DisountEvent from "../DisountEvent.js";
 
 class OrderController {
@@ -11,6 +16,7 @@ class OrderController {
   #orderInfo;
   #totalSum;
   #benefitHistory;
+  #gift;
 
   constructor() {
     const appetizers = MENU_INFO.filter(
@@ -28,6 +34,7 @@ class OrderController {
     this.#servedMenus = [...appetizers, ...mainDishes, ...desserts, ...drinks];
     this.#totalSum = 0;
     this.#benefitHistory = new Map();
+    this.#gift = new Map();
   }
 
   async placeOrder() {
@@ -38,6 +45,8 @@ class OrderController {
     if (this.#totalSum >= 10_000) {
       const totalDiscount = this.calculateDiscount();
     }
+    this.chooseGift();
+    console.log(this.#benefitHistory);
   }
 
   async setVisitDate() {
@@ -110,6 +119,18 @@ class OrderController {
     }
 
     return discountSum;
+  }
+
+  chooseGift() {
+    let giftPrice = 0;
+    GIFT_LIST.forEach((gift) => {
+      if (gift.conditionPrice <= this.#totalSum) {
+        this.#gift.set(gift.name, gift.price);
+        giftPrice += gift.price;
+      }
+    });
+
+    this.#benefitHistory.set(EVENT_LIST.gift, giftPrice);
   }
 }
 
