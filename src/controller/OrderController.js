@@ -1,7 +1,7 @@
 import InputView from "../InputView.js";
 import Calculator from "../utils/Calculator.js";
 import { Appetizer, MainDish, Drink, Dessert } from "../Model/Menu.js";
-import { MENU_INFO } from "../constant/Constant.js";
+import { MENU_INFO, SPECIAL_DATE } from "../constant/Constant.js";
 
 class OrderController {
   #visitDate;
@@ -24,6 +24,7 @@ class OrderController {
       (menu) => new Drink(menu.name, menu.price)
     );
     this.#servedMenus = [...appetizers, ...mainDishes, ...desserts, ...drinks];
+    this.#totalSum = 0;
   }
 
   async placeOrder() {
