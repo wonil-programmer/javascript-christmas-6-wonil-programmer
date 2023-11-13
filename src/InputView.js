@@ -24,9 +24,7 @@ const InputView = {
         const menuArr = menuInput.split(SEPARATOR.comma);
         const orderedMenu = new Map();
         menuArr.forEach((menu) => {
-          const menuMetaData = menu.split(SEPARATOR.dash);
-          let menuName = menuMetaData[0];
-          let menuQty = Number(menuMetaData[1]);
+          const [menuName, menuQty] = menu.split(SEPARATOR.dash);
           orderedMenu.set(menuName, menuQty);
         });
 
