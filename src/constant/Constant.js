@@ -1,5 +1,20 @@
 export const EVENT_MONTH = 12;
 
+export const MENU_INFO = [
+  { name: "양송이수프", price: 6000, category: "애피타이저" },
+  { name: "타파스", price: 5500, category: "애피타이저" },
+  { name: "시저샐러드", price: 8000, category: "애피타이저" },
+  { name: "티본스테이크", price: 55000, category: "메인" },
+  { name: "바비큐립", price: 54000, category: "메인" },
+  { name: "해산물파스타", price: 35000, category: "메인" },
+  { name: "크리스마스파스타", price: 25000, category: "메인" },
+  { name: "초코케이크", price: 15000, category: "디저트" },
+  { name: "아이스크림", price: 5000, category: "디저트" },
+  { name: "제로콜라", price: 3000, category: "음료" },
+  { name: "레드와인", price: 60000, category: "음료" },
+  { name: "샴페인", price: 25000, category: "음료" },
+];
+
 export const ALERT_MESSAGE = Object.freeze({
   greetings: "안녕하세요! 우테코 식당 {12}월 이벤트 플래너입니다.\n",
   result: "{12}월 {3}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n",
