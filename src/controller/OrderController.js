@@ -15,6 +15,7 @@ class OrderController {
   #servedMenus;
   #orderInfo;
   #totalSum;
+  #totalDiscount;
   #benefitHistory;
   #gift;
 
@@ -43,10 +44,11 @@ class OrderController {
     await this.setOrderInfo();
     this.calculateTotalSum();
     if (this.#totalSum >= 10_000) {
-      const totalDiscount = this.calculateDiscount();
+      this.#totalDiscount = this.calculateDiscount();
+      this.chooseGift();
     }
-    this.chooseGift();
     const totalBenefit = this.calculateTotalBenefit();
+    const payment = this.calculatePayment();
   }
 
   async setVisitDate() {
@@ -140,6 +142,10 @@ class OrderController {
     }
 
     return benefitSum;
+  }
+
+  calculatePayment() {
+    return this.#totalSum - this.#totalDiscount;
   }
 }
 
