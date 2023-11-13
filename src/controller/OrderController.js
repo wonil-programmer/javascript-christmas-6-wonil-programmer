@@ -68,6 +68,17 @@ class OrderController {
     return mainDishCount;
   }
 
+  countDessert() {
+    let dessertCount = 0;
+    this.#orderInfo.forEach((qty, name) => {
+      if (this.getMenuInfo(name).category === "디저트") {
+        dessertCount += qty;
+      }
+    });
+
+    return dessertCount;
+  }
+
   getMenuInfo(name) {
     return this.#servedMenus.find((menu) => menu.name === name);
   }
@@ -83,6 +94,10 @@ class OrderController {
     if (this.#isWeekend) {
       const mainDishQty = this.countMainDish();
       discountSum += DisountEvent.applyWeekend(mainDishQty);
+    }
+    if (!this.#isWeekend) {
+      const dessertQty = this.countDessert();
+      discountSum += DisountEvent.applyWeekDay(dessertQty);
     }
     return discountSum;
   }
