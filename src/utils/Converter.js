@@ -6,6 +6,11 @@ const Converter = {
   applyNegative(number) {
     return "-" + number;
   },
+
+  changeToBenefit(number) {
+    const formattedNumber = this.applyNumberFormat(number);
+    return number > 0 ? this.applyNegative(formattedNumber) : number;
+  },
 };
 
 export default Converter;
