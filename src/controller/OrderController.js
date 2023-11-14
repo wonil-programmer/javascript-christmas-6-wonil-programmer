@@ -7,6 +7,7 @@ import {
   BADGE,
   BADGE_CUT_OFF,
   xMasDay,
+  MENU_CATEGORY,
 } from "../constant/Constant.js";
 import Event from "../Event.js";
 import OutputView from "../OutputView.js";
@@ -58,7 +59,7 @@ class OrderController {
   countMainDish() {
     let mainDishCount = 0;
     this.#orderInfo.forEach((qty, name) => {
-      if (this.getMenuInfo(name).category === "메인") {
+      if (this.getMenuInfo(name).category === MENU_CATEGORY.main) {
         mainDishCount += qty;
       }
     });
@@ -69,7 +70,7 @@ class OrderController {
   countDessert() {
     let dessertCount = 0;
     this.#orderInfo.forEach((qty, name) => {
-      if (this.getMenuInfo(name).category === "디저트") {
+      if (this.getMenuInfo(name).category === MENU_CATEGORY.dessert) {
         dessertCount += qty;
       }
     });
