@@ -55,7 +55,6 @@ class OrderController {
       this.calculateTotalBenefit();
       this.awardBadge(this.#totalBenefit);
     }
-    const payment = this.calculatePayment();
   }
 
   async setVisitDate() {
@@ -146,10 +145,6 @@ class OrderController {
     for (let benefit of this.#benefitHistory.values()) {
       this.#totalBenefit += benefit;
     }
-  }
-
-  calculatePayment() {
-    return this.#totalSum - this.#totalDiscount;
   }
 
   awardBadge(benefit) {
