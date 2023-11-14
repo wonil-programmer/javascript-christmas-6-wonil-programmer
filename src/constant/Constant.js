@@ -22,6 +22,8 @@ export const MENU_CATEGORY = Object.freeze({
   dessert: "디저트",
 });
 
+export const ORDER_INPUT = /^([가-힣a-zA-Z]+-\d+)+(,[가-힣a-zA-Z]+-\d+)*$/;
+
 export const SPECIAL_DATE = [3, 10, 17, 24, 25, 31];
 
 export const QUANTITY_LIMIT = 20;

@@ -20,8 +20,9 @@ const InputView = {
   async readMenu() {
     while (true) {
       try {
-        const menuInput = await Console.readLineAsync(ASK_MESSAGE.menuInfo);
-        const menuArr = menuInput.split(SEPARATOR.comma);
+        const orderInput = await Console.readLineAsync(ASK_MESSAGE.menuInfo);
+        Validator.validateOrderForm(orderInput);
+        const menuArr = orderInput.split(SEPARATOR.comma);
         const orderedMenu = new Map();
         const storedName = [];
         menuArr.forEach((menu) => {

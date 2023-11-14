@@ -1,6 +1,7 @@
 import {
   ERROR_MESSAGE,
   MENU_CATEGORY,
+  ORDER_INPUT,
   QUANTITY_LIMIT,
 } from "../constant/Constant.js";
 import { MENU_INFO } from "../constant/Constant.js";
@@ -10,6 +11,13 @@ const Validator = {
     const dateNum = Number(date);
     if (isNaN(dateNum)) throw new Error(ERROR_MESSAGE.invalidDate);
     if (dateNum < 1 || dateNum > 31) throw new Error(ERROR_MESSAGE.invalidDate);
+  },
+
+  validateOrderForm(orderInput) {
+    const pattern = ORDER_INPUT;
+    if (!pattern.test(orderInput)) {
+      throw new Error(ERROR_MESSAGE.invalidOrder);
+    }
   },
 
   validateDuplication(array) {
