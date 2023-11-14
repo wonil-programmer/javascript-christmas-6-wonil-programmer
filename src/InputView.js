@@ -27,6 +27,7 @@ const InputView = {
           const [menuName, menuQty] = menu.split(SEPARATOR.dash);
           orderedMenu.set(menuName, Number(menuQty));
         });
+        Validator.validateOrderedMenu(orderedMenu);
 
         return orderedMenu;
       } catch (error) {
