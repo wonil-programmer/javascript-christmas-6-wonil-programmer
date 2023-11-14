@@ -42,6 +42,16 @@ const OutputView = {
       Console.print(name);
     }
   },
+
+  printBenefitHistory(benefitHistory) {
+    Console.print(RESULT_HEADER.benefitHistory);
+    if (benefitHistory.size === 0) {
+      Console.print(NOTHING);
+    }
+    benefitHistory.forEach((price, title) => {
+      Console.print(title + UNIT.price(Converter.changeToBenefit(price)));
+    });
+  },
 };
 
 export default OutputView;
