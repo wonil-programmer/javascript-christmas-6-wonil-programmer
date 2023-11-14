@@ -14,33 +14,19 @@ import OutputView from "../OutputView.js";
 class OrderController {
   #visitDate;
   #isWeekend;
-  #servedMenus;
+  #preparedMenus;
   #orderInfo;
   #totalSum;
   #totalDiscount;
-  #benefitHistory;
+  #benefitHistory = new Map();
   #totalBenefit;
-  #gift;
+  #gift = new Map();
   #badge;
 
-  constructor() {
-    const appetizers = MENU_INFO.filter(
-      (menu) => menu.category === "애피타이저"
-    ).map((menu) => new Appetizer(menu.name, menu.price));
-    const mainDishes = MENU_INFO.filter((menu) => menu.category === "메인").map(
-      (menu) => new MainDish(menu.name, menu.price)
-    );
-    const desserts = MENU_INFO.filter((menu) => menu.category === "디저트").map(
-      (menu) => new Dessert(menu.name, menu.price)
-    );
-    const drinks = MENU_INFO.filter((menu) => menu.category === "음료").map(
-      (menu) => new Drink(menu.name, menu.price)
-    );
-    this.#servedMenus = [...appetizers, ...mainDishes, ...desserts, ...drinks];
+  constructor(menuInfo) {
+    this.#preparedMenus = [...menuInfo];
     this.#totalSum = 0;
     this.#totalBenefit = 0;
-    this.#benefitHistory = new Map();
-    this.#gift = new Map();
   }
 
   async placeOrder() {
@@ -98,7 +84,7 @@ class OrderController {
   }
 
   getMenuInfo(name) {
-    return this.#servedMenus.find((menu) => menu.name === name);
+    return this.#preparedMenus.find((menu) => menu.name === name);
   }
 
   calculateDiscount() {
