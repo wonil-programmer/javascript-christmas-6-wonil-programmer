@@ -47,12 +47,21 @@ export const BADGE = Object.freeze({
   santa: "산타",
 });
 
-export const EVENT_LIST = Object.freeze({
+export const EVENT = Object.freeze({
   xMasDDay: "크리스마스 디데이 할인: ",
   weekday: "평일 할인: ",
   weekend: "주말 할인: ",
   special: "특별 할인: ",
   gift: "증정 이벤트: ",
+});
+
+export const xMasDay = 25;
+
+export const EVENT_DISCOUNT_AMOUNT = Object.freeze({
+  xMasDDay: (date) => 1_000 + (Number(date) - 1) * 100,
+  weekday: 2_023,
+  weekend: 2_023,
+  special: 1_000,
 });
 
 export const ALERT_MESSAGE = Object.freeze({
