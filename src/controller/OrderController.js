@@ -116,13 +116,17 @@ class OrderController {
     if (this.#isWeekend) {
       const mainDishQty = this.countMainDish();
       const weekendDiscount = DisountEvent.applyWeekend(mainDishQty);
-      this.#benefitHistory.set(EVENT_LIST.weekend, weekendDiscount);
+      if (weekendDiscount > 0) {
+        this.#benefitHistory.set(EVENT_LIST.weekend, weekendDiscount);
+      }
       discountSum += weekendDiscount;
     }
     if (!this.#isWeekend) {
       const dessertQty = this.countDessert();
       const weekdayDiscount = DisountEvent.applyWeekday(dessertQty);
-      this.#benefitHistory.set(EVENT_LIST.weekday, weekdayDiscount);
+      if (weekdayDiscount > 0) {
+        this.#benefitHistory.set(EVENT_LIST.weekday, weekdayDiscount);
+      }
       discountSum += weekdayDiscount;
     }
 
