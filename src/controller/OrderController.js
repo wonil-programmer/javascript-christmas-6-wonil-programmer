@@ -7,6 +7,7 @@ import {
   EVENT_LIST,
   GIFT_LIST,
   BADGE,
+  BADGE_CUT_OFF,
 } from "../constant/Constant.js";
 import DisountEvent from "../DisountEvent.js";
 import OutputView from "../OutputView.js";
@@ -138,15 +139,15 @@ class OrderController {
   }
 
   awardBadge(benefit) {
-    if (benefit >= 20_000) {
+    if (benefit >= BADGE_CUT_OFF.santa) {
       this.#badge = BADGE.santa;
       return;
     }
-    if (benefit >= 10_000) {
+    if (benefit >= BADGE_CUT_OFF.tree) {
       this.#badge = BADGE.tree;
       return;
     }
-    if (benefit >= 5_000) {
+    if (benefit >= BADGE_CUT_OFF.star) {
       this.#badge = BADGE.star;
       return;
     }
