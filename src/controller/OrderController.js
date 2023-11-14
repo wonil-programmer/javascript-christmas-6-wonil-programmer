@@ -168,6 +168,7 @@ class OrderController {
     OutputView.printTotalSum(this.#totalSum);
     OutputView.printGift(this.#gift);
     OutputView.printBenefitHistory(this.#benefitHistory);
+    OutputView.printTotalBenefit(this.#totalBenefit);
   }
 }
 

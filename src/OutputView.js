@@ -52,6 +52,11 @@ const OutputView = {
       Console.print(title + UNIT.price(Converter.changeToBenefit(price)));
     });
   },
+
+  printTotalBenefit(totalBenefit) {
+    Console.print(RESULT_HEADER.totalBenefit);
+    Console.print(UNIT.price(Converter.changeToBenefit(totalBenefit)));
+  },
 };
 
 export default OutputView;
