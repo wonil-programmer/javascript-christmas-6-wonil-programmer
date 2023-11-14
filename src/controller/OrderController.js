@@ -41,7 +41,6 @@ class OrderController {
     this.#totalBenefit = 0;
     this.#benefitHistory = new Map();
     this.#gift = new Map();
-    this.#badge = null;
   }
 
   async placeOrder() {
@@ -55,6 +54,7 @@ class OrderController {
       this.calculateTotalBenefit();
       this.awardBadge(this.#totalBenefit);
     }
+    this.printResult();
   }
 
   async setVisitDate() {
@@ -160,6 +160,11 @@ class OrderController {
       this.#badge = BADGE.star;
       return;
     }
+  }
+
+  printResult() {
+    OutputView.printResultHeader(this.#visitDate);
+    OutputView.printMenu(this.#orderInfo);
   }
 }
 
