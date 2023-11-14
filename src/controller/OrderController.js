@@ -166,6 +166,7 @@ class OrderController {
     OutputView.printResultHeader(this.#visitDate);
     OutputView.printMenu(this.#orderInfo);
     OutputView.printTotalSum(this.#totalSum);
+    OutputView.printGift(this.#gift);
   }
 }
 

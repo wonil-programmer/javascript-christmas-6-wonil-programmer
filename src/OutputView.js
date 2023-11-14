@@ -4,6 +4,7 @@ import {
   RESULT_HEADER,
   ALERT_MESSAGE,
   UNIT,
+  NOTHING,
 } from "./constant/Constant.js";
 import Converter from "./utils/Converter.js";
 
@@ -30,6 +31,16 @@ const OutputView = {
   printTotalSum(totalSum) {
     Console.print(RESULT_HEADER.totalSum);
     Console.print(UNIT.price(Converter.applyNumberFormat(totalSum)));
+  },
+
+  printGift(gift) {
+    Console.print(RESULT_HEADER.gift);
+    if (gift.size === 0) {
+      Console.print(NOTHING);
+    }
+    for (let name of gift.keys()) {
+      Console.print(name);
+    }
   },
 };
 
