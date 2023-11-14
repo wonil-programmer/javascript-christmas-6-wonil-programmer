@@ -5,10 +5,17 @@ const Validator = {
   validateDate(date) {
     const dateNum = Number(date);
     if (isNaN(dateNum)) {
-      throw new Error(`${ERROR_MESSAGE.invalidDate}`);
+      throw new Error(ERROR_MESSAGE.invalidDate);
     }
     if (dateNum < 1 || dateNum > 31) {
-      throw new Error(`${ERROR_MESSAGE.invalidDate}`);
+      throw new Error(ERROR_MESSAGE.invalidDate);
+    }
+  },
+
+  validateDuplication(array) {
+    const set = new Set(array);
+    if (set.size !== array.length) {
+      throw new Error(ERROR_MESSAGE.invalidOrder);
     }
   },
 
@@ -23,7 +30,7 @@ const Validator = {
   validateOrderedMenu(orderedMenu) {
     orderedMenu.forEach((quantity, name) => {
       if (!this.isValidMenuName(name) || !this.isPositiveInt(quantity)) {
-        throw new Error(`${ERROR_MESSAGE.invalidOrder}`);
+        throw new Error(ERROR_MESSAGE.invalidOrder);
       }
     });
   },

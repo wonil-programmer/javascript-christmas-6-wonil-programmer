@@ -23,8 +23,11 @@ const InputView = {
         const menuInput = await Console.readLineAsync(ASK_MESSAGE.menuInfo);
         const menuArr = menuInput.split(SEPARATOR.comma);
         const orderedMenu = new Map();
+        const storedName = [];
         menuArr.forEach((menu) => {
           const [menuName, menuQty] = menu.split(SEPARATOR.dash);
+          storedName.push(menuName);
+          Validator.validateDuplication(storedName);
           orderedMenu.set(menuName, Number(menuQty));
         });
         Validator.validateOrderedMenu(orderedMenu);
