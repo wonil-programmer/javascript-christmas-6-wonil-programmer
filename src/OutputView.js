@@ -57,6 +57,11 @@ const OutputView = {
     Console.print(RESULT_HEADER.totalBenefit);
     Console.print(UNIT.price(Converter.changeToBenefit(totalBenefit)));
   },
+
+  printPayment(payment) {
+    Console.print(RESULT_HEADER.payment);
+    Console.print(UNIT.price(Converter.applyNumberFormat(payment)));
+  },
 };
 
 export default OutputView;
