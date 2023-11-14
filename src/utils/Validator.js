@@ -1,22 +1,20 @@
-import { ERROR_MESSAGE } from "../constant/Constant.js";
+import {
+  ERROR_MESSAGE,
+  MENU_CATEGORY,
+  QUANTITY_LIMIT,
+} from "../constant/Constant.js";
 import { MENU_INFO } from "../constant/Constant.js";
 
 const Validator = {
   validateDate(date) {
     const dateNum = Number(date);
-    if (isNaN(dateNum)) {
-      throw new Error(ERROR_MESSAGE.invalidDate);
-    }
-    if (dateNum < 1 || dateNum > 31) {
-      throw new Error(ERROR_MESSAGE.invalidDate);
-    }
+    if (isNaN(dateNum)) throw new Error(ERROR_MESSAGE.invalidDate);
+    if (dateNum < 1 || dateNum > 31) throw new Error(ERROR_MESSAGE.invalidDate);
   },
 
   validateDuplication(array) {
     const set = new Set(array);
-    if (set.size !== array.length) {
-      throw new Error(ERROR_MESSAGE.invalidOrder);
-    }
+    if (set.size !== array.length) throw new Error(ERROR_MESSAGE.invalidOrder);
   },
 
   isValidMenuName(menuName) {
@@ -28,11 +26,15 @@ const Validator = {
   },
 
   validateOrderedMenu(orderedMenu) {
+    let totalQty = 0;
     orderedMenu.forEach((quantity, name) => {
-      if (!this.isValidMenuName(name) || !this.isPositiveInt(quantity)) {
+      totalQty += quantity;
+      if (!this.isValidMenuName(name) || !this.isPositiveInt(quantity))
         throw new Error(ERROR_MESSAGE.invalidOrder);
-      }
     });
+    if (totalQty > QUANTITY_LIMIT) {
+      throw new Error(ERROR_MESSAGE.invalidOrder);
+    }
   },
 };
 

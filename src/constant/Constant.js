@@ -15,7 +15,16 @@ export const MENU_INFO = [
   { name: "샴페인", price: 25000, category: "음료" },
 ];
 
+export const MENU_CATEGORY = Object.freeze({
+  beverage: "음료",
+  main: "메인",
+  appetizer: "애피타이저",
+  dessert: "디저트",
+});
+
 export const SPECIAL_DATE = [3, 10, 17, 24, 25, 31];
+
+export const QUANTITY_LIMIT = 20;
 
 export const GIFT_LIST = [
   { name: "샴페인 1개", price: 25_000, conditionPrice: 120_000 },
