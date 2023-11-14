@@ -1,8 +1,6 @@
 import InputView from "../InputView.js";
 import Calculator from "../utils/Calculator.js";
-import { Appetizer, MainDish, Drink, Dessert } from "../Model/Menu.js";
 import {
-  MENU_INFO,
   SPECIAL_DATE,
   EVENT_LIST,
   GIFT_LIST,
@@ -41,7 +39,6 @@ class OrderController {
       this.calculateTotalBenefit();
       this.awardBadge(this.#totalBenefit);
     }
-    this.printResult();
   }
 
   async setVisitDate() {

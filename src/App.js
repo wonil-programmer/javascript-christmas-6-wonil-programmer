@@ -22,6 +22,7 @@ class App {
   async run() {
     OutputView.printGreetings();
     await this.#orderController.placeOrder();
+    this.#orderController.printResult();
   }
 
   prepareMenus(category) {
