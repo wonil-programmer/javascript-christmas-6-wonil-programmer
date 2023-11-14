@@ -1,5 +1,8 @@
 export const EVENT_MONTH = 12;
 
+export const MONTH_START_DATE = 1;
+export const MONTH_END_DATE = 31;
+
 export const MENU_INFO = [
   { name: "양송이수프", price: 6000, category: "애피타이저" },
   { name: "타파스", price: 5500, category: "애피타이저" },
