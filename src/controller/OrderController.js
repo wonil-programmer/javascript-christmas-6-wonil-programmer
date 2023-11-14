@@ -9,6 +9,7 @@ import {
   BADGE,
 } from "../constant/Constant.js";
 import DisountEvent from "../DisountEvent.js";
+import OutputView from "../OutputView.js";
 
 class OrderController {
   #visitDate;
@@ -18,6 +19,7 @@ class OrderController {
   #totalSum;
   #totalDiscount;
   #benefitHistory;
+  #totalBenefit;
   #gift;
   #badge;
 
@@ -36,6 +38,7 @@ class OrderController {
     );
     this.#servedMenus = [...appetizers, ...mainDishes, ...desserts, ...drinks];
     this.#totalSum = 0;
+    this.#totalBenefit = 0;
     this.#benefitHistory = new Map();
     this.#gift = new Map();
     this.#badge = null;
@@ -49,10 +52,9 @@ class OrderController {
     if (this.#totalSum >= 10_000) {
       this.#totalDiscount = this.calculateDiscount();
       this.chooseGift();
-      const totalBenefit = this.calculateTotalBenefit();
-      this.awardBadge(totalBenefit);
+      this.calculateTotalBenefit();
+      this.awardBadge(this.#totalBenefit);
     }
-    console.log(this.#badge);
     const payment = this.calculatePayment();
   }
 
@@ -141,12 +143,9 @@ class OrderController {
   }
 
   calculateTotalBenefit() {
-    let benefitSum = 0;
     for (let benefit of this.#benefitHistory.values()) {
-      benefitSum += benefit;
+      this.#totalBenefit += benefit;
     }
-
-    return benefitSum;
   }
 
   calculatePayment() {
