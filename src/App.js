@@ -5,13 +5,12 @@ import {
   MENU_CATEGORY,
   ERROR_MESSAGE,
 } from "./constant/Constant.js";
-import { Appetizer, MainDish, Dessert, Drink } from "./Model/Menu.js";
+import { Appetizer, MainDish, Dessert, Beverage } from "./Model/Menu.js";
 
 class App {
   #orderController;
 
   constructor() {
-    OutputView.printGreetings();
     let menuInfo = [];
     for (let key in MENU_CATEGORY) {
       const preparedItems = this.prepareMenus(MENU_CATEGORY[key]);
@@ -21,6 +20,7 @@ class App {
   }
 
   async run() {
+    OutputView.printGreetings();
     await this.#orderController.placeOrder();
   }
 
@@ -39,7 +39,7 @@ class App {
       case MENU_CATEGORY.dessert:
         return new Dessert(menu.name, menu.price);
       case MENU_CATEGORY.beverage:
-        return new Drink(menu.name, menu.price);
+        return new Beverage(menu.name, menu.price);
       default:
         break;
     }
