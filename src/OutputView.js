@@ -5,6 +5,7 @@ import {
   ALERT_MESSAGE,
   UNIT,
 } from "./constant/Constant.js";
+import Converter from "./utils/Converter.js";
 
 const OutputView = {
   printErrorMessage(error) {
@@ -24,6 +25,11 @@ const OutputView = {
     menuInfo.forEach((qty, name) => {
       Console.print(name + " " + UNIT.quantity(qty));
     });
+  },
+
+  printTotalSum(totalSum) {
+    Console.print(RESULT_HEADER.totalSum);
+    Console.print(UNIT.price(Converter.applyNumberFormat(totalSum)));
   },
 };
 
