@@ -62,6 +62,11 @@ const OutputView = {
     Console.print(RESULT_HEADER.payment);
     Console.print(UNIT.price(Converter.applyNumberFormat(payment)));
   },
+
+  printBadge(badge) {
+    Console.print(RESULT_HEADER.badge);
+    badge ? Console.print(badge) : Console.print(NOTHING);
+  },
 };
 
 export default OutputView;

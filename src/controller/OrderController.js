@@ -174,6 +174,7 @@ class OrderController {
     OutputView.printBenefitHistory(this.#benefitHistory);
     OutputView.printTotalBenefit(this.#totalBenefit);
     OutputView.printPayment(this.#totalSum, this.#totalDiscount);
+    OutputView.printBadge(this.#badge);
   }
 }
 
