@@ -1,6 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
 import {
-  ERROR_MESSAGE,
   RESULT_HEADER,
   ALERT_MESSAGE,
   UNIT,

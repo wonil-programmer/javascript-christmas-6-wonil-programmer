@@ -13,7 +13,6 @@ import Event from "../Event.js";
 import OutputView from "../OutputView.js";
 
 class OrderController {
-  #visitDate;
   #preparedMenus;
   #orderInfo;
   #totalSum;
@@ -29,21 +28,14 @@ class OrderController {
     this.#totalBenefit = 0;
   }
 
-  async placeOrder() {
-    await this.setVisitDate();
-    const isWeekend = Calculator.calculateIsWeekend(this.#visitDate);
+  async placeOrder(visitDate) {
+    const isWeekend = Calculator.calculateIsWeekend(visitDate);
     await this.setOrderInfo();
     this.calculateTotalSum();
-    if (this.#totalSum >= 10_000) {
-      this.calculateDiscount(isWeekend);
-      this.chooseGift();
-      this.calculateTotalBenefit();
-      this.awardBadge(this.#totalBenefit);
-    }
-  }
-
-  async setVisitDate() {
-    this.#visitDate = await InputView.readDate();
+    this.#totalSum >= 10_000 && this.calculateDiscount(visitDate, isWeekend);
+    this.chooseGift();
+    this.calculateTotalBenefit();
+    this.awardBadge(this.#totalBenefit);
   }
 
   async setOrderInfo() {
@@ -94,10 +86,10 @@ class OrderController {
     this.#totalBenefit += discount;
   };
 
-  calculateDiscount(isWeekend) {
-    if (this.#visitDate <= xMasDay)
-      this.applyDiscount(EVENT.xMasDDay, Event.applyXMasDDay, this.#visitDate);
-    if (SPECIAL_DATE.includes(this.#visitDate))
+  calculateDiscount(visitDate, isWeekend) {
+    if (visitDate <= xMasDay)
+      this.applyDiscount(EVENT.xMasDDay, Event.applyXMasDDay, visitDate);
+    if (SPECIAL_DATE.includes(visitDate))
       this.applyDiscount(EVENT.special, Event.applySpecial);
     if (isWeekend) {
       const mainDishQty = this.countMainDish();
@@ -140,8 +132,7 @@ class OrderController {
     }
   }
 
-  printResult() {
-    OutputView.printResultHeader(this.#visitDate);
+  printOrderInfo() {
     OutputView.printMenu(this.#orderInfo);
     OutputView.printTotalSum(this.#totalSum);
     OutputView.printGift(this.#gift);

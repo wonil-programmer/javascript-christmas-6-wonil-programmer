@@ -7,10 +7,10 @@ const InputView = {
   async readDate() {
     while (true) {
       try {
-        const visitDate = await Console.readLineAsync(ASK_MESSAGE.visitDate);
-        Validator.validateDate(visitDate);
+        const date = await Console.readLineAsync(ASK_MESSAGE.visitDate);
+        Validator.validateDate(date);
 
-        return Number(visitDate);
+        return Number(date);
       } catch (error) {
         OutputView.printErrorMessage(error);
       }

@@ -1,10 +1,7 @@
 import OrderController from "../src/controller/OrderController.js";
 import OutputView from "./OutputView.js";
-import {
-  MENU_INFO,
-  MENU_CATEGORY,
-  ERROR_MESSAGE,
-} from "./constant/Constant.js";
+import InputView from "./InputView.js";
+import { MENU_INFO, MENU_CATEGORY } from "./constant/Constant.js";
 import { Appetizer, MainDish, Dessert, Beverage } from "./Model/Menu.js";
 
 class App {
@@ -21,8 +18,10 @@ class App {
 
   async run() {
     OutputView.printGreetings();
-    await this.#orderController.placeOrder();
-    this.#orderController.printResult();
+    const visitDate = await InputView.readDate();
+    await this.#orderController.placeOrder(visitDate);
+    OutputView.printResultHeader(visitDate);
+    this.#orderController.printOrderInfo();
   }
 
   prepareMenus(category) {
