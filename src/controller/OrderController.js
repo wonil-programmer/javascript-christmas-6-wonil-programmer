@@ -6,7 +6,7 @@ import {
   GIFT_LIST,
   BADGE,
   BADGE_CUT_OFF,
-  xMasDay,
+  DATE,
   MENU_CATEGORY,
 } from "../constant/Constant.js";
 import Event from "../Event.js";
@@ -87,7 +87,7 @@ class OrderController {
   };
 
   calculateDiscount(visitDate, isWeekend) {
-    if (visitDate <= xMasDay)
+    if (visitDate <= DATE.xMasDate)
       this.applyDiscount(EVENT.xMasDDay, Event.applyXMasDDay, visitDate);
     if (SPECIAL_DATE.includes(visitDate))
       this.applyDiscount(EVENT.special, Event.applySpecial);

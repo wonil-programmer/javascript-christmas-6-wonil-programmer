@@ -1,7 +1,9 @@
-export const EVENT_MONTH = 12;
-
-export const MONTH_START_DATE = 1;
-export const MONTH_END_DATE = 31;
+export const DATE = {
+  eventMonth: 12,
+  startDate: 1,
+  endDate: 31,
+  xMasDate: 25,
+};
 
 export const MENU_INFO = [
   { name: "양송이수프", price: 6_000, category: "애피타이저" },
@@ -54,8 +56,6 @@ export const EVENT = Object.freeze({
   special: "특별 할인: ",
   gift: "증정 이벤트: ",
 });
-
-export const xMasDay = 25;
 
 export const EVENT_DISCOUNT_AMOUNT = Object.freeze({
   xMasDDay: (date) => 1_000 + (Number(date) - 1) * 100,

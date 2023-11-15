@@ -1,8 +1,7 @@
 import {
   ERROR_MESSAGE,
   MENU_CATEGORY,
-  MONTH_START_DATE,
-  MONTH_END_DATE,
+  DATE,
   ORDER_INPUT,
   QUANTITY_LIMIT,
 } from "../constant/Constant.js";
@@ -12,7 +11,7 @@ const Validator = {
   validateDate(date) {
     const dateNum = Number(date);
     if (isNaN(dateNum)) throw new Error(ERROR_MESSAGE.invalidDate);
-    if (dateNum < MONTH_START_DATE || dateNum > MONTH_END_DATE)
+    if (dateNum < DATE.startDate || dateNum > DATE.endDate)
       throw new Error(ERROR_MESSAGE.invalidDate);
   },
 
