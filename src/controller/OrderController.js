@@ -14,7 +14,7 @@ import OutputView from "../OutputView.js";
 
 class OrderController {
   #menuInfo;
-  #orderInfo;
+  #orderInfo = new Map();
   #totalSum;
   #totalDiscount;
   #benefitHistory = new Map();
@@ -35,7 +35,7 @@ class OrderController {
     this.#totalSum >= 10_000 && this.calculateDiscount(visitDate, isWeekend);
     this.chooseGift();
     this.calculateTotalBenefit();
-    this.awardBadge(this.#totalBenefit);
+    this.rewardBadge(this.#totalBenefit);
   }
 
   async setOrderInfo() {
@@ -117,7 +117,7 @@ class OrderController {
     }
   }
 
-  awardBadge(benefit) {
+  rewardBadge(benefit) {
     if (benefit >= BADGE_CUT_OFF.santa) {
       this.#badge = BADGE.santa;
       return;
