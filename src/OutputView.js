@@ -20,16 +20,17 @@ const OutputView = {
     Console.print(ALERT_MESSAGE.resultHeader(date));
   },
 
-  printMenu(menuInfo) {
+  printMenu(order) {
     Console.print(RESULT_HEADER.menu);
-    menuInfo.forEach((qty, name) => {
-      Console.print(name + " " + UNIT.quantity(qty));
+    const orderItems = order.getItems();
+    orderItems.forEach((item) => {
+      Console.print(item.name + " " + UNIT.quantity(item.quantity));
     });
   },
 
-  printTotalSum(totalSum) {
-    Console.print(RESULT_HEADER.totalSum);
-    Console.print(UNIT.price(Converter.applyNumberFormat(totalSum)));
+  printTotalPrice(totalPrice) {
+    Console.print(RESULT_HEADER.totalPrice);
+    Console.print(UNIT.price(Converter.applyNumberFormat(totalPrice)));
   },
 
   printGift(gift) {
