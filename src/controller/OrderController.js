@@ -5,6 +5,7 @@ import {
   GIFT_LIST,
   BADGE,
   BADGE_CUT_OFF,
+  MIN_TOTAL_PRICE,
 } from "../constant/Constant.js";
 import Event from "../Event.js";
 import Calculator from "../utils/Calculator.js";
@@ -23,7 +24,7 @@ class OrderController {
   async placeOrder(visitDate) {
     const order = await InputView.readOrder(this.#menuInfo);
     const totalPrice = order.calculateTotalPrice();
-    if (totalPrice > 10_000) {
+    if (totalPrice > MIN_TOTAL_PRICE) {
       this.calculateDiscount(visitDate, order);
       this.chooseGift(totalPrice);
     }

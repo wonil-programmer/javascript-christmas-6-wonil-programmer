@@ -1,8 +1,4 @@
-import {
-  EVENT_DISCOUNT_AMOUNT,
-  DATE,
-  SPECIAL_DATE,
-} from "./constant/Constant.js";
+import { EVENT_DISCOUNT_AMOUNT, DATE } from "./constant/Constant.js";
 import Calculator from "./utils/Calculator.js";
 
 const Event = {
@@ -13,7 +9,9 @@ const Event = {
   },
 
   applySpecial(visitDate) {
-    return SPECIAL_DATE.includes(visitDate) ? EVENT_DISCOUNT_AMOUNT.special : 0;
+    return DATE.specialDate.includes(visitDate)
+      ? EVENT_DISCOUNT_AMOUNT.special
+      : 0;
   },
 
   applyWeekend(visitDate, order) {

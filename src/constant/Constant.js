@@ -3,7 +3,10 @@ export const DATE = {
   startDate: 1,
   endDate: 31,
   xMasDate: 25,
+  specialDate: [3, 10, 17, 24, 25, 31],
 };
+
+export const MIN_TOTAL_PRICE = 10_000;
 
 export const MENU_INFO = [
   { name: "양송이수프", price: 6_000, category: "애피타이저" },
@@ -27,6 +30,8 @@ export const MENU_CATEGORY = Object.freeze({
   dessert: "디저트",
 });
 
+export const QUANTITY_LIMIT = 20;
+
 export const BADGE_CUT_OFF = Object.freeze({
   santa: 20_000,
   tree: 10_000,
@@ -35,10 +40,6 @@ export const BADGE_CUT_OFF = Object.freeze({
 
 export const ORDER_INPUT_REG_EXP =
   /^([가-힣a-zA-Z]+-\d+)+(,[가-힣a-zA-Z]+-\d+)*$/;
-
-export const SPECIAL_DATE = [3, 10, 17, 24, 25, 31];
-
-export const QUANTITY_LIMIT = 20;
 
 export const GIFT_LIST = [
   { name: "샴페인 1개", price: 25_000, conditionPrice: 120_000 },
@@ -80,7 +81,7 @@ export const ASK_MESSAGE = Object.freeze({
 
 export const RESULT_HEADER = Object.freeze({
   menu: "<주문 메뉴>",
-  totalSum: "\n<할인 전 총주문 금액>",
+  totalPrice: "\n<할인 전 총주문 금액>",
   gift: "\n<증정 메뉴>",
   benefitHistory: "\n<혜택 내역>",
   totalBenefit: "\n<총혜택 금액>",
