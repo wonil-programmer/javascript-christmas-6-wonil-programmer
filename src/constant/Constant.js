@@ -69,7 +69,7 @@ export const EVENT_DISCOUNT_AMOUNT = Object.freeze({
 export const ALERT_MESSAGE = Object.freeze({
   greetings: "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.",
   resultHeader: (date) =>
-    `12월 ${date}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!`,
+    `12월 ${date}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n`,
 });
 
 export const ASK_MESSAGE = Object.freeze({
