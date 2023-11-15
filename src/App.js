@@ -8,12 +8,12 @@ class App {
   #orderController;
 
   constructor() {
-    let menuInfo = [];
+    let preparedMenus = [];
     for (let key in MENU_CATEGORY) {
       const preparedItems = this.prepareMenus(MENU_CATEGORY[key]);
-      menuInfo = [...menuInfo, ...preparedItems];
+      preparedMenus = [...preparedMenus, ...preparedItems];
     }
-    this.#orderController = new OrderController(menuInfo);
+    this.#orderController = new OrderController(preparedMenus);
   }
 
   async run() {

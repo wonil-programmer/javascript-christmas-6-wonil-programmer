@@ -13,7 +13,7 @@ import Event from "../Event.js";
 import OutputView from "../OutputView.js";
 
 class OrderController {
-  #preparedMenus;
+  #menuInfo;
   #orderInfo;
   #totalSum;
   #totalDiscount;
@@ -22,8 +22,8 @@ class OrderController {
   #gift = new Map();
   #badge;
 
-  constructor(menuInfo) {
-    this.#preparedMenus = [...menuInfo];
+  constructor(preparedMenus) {
+    this.#menuInfo = [...preparedMenus];
     this.#totalSum = 0;
     this.#totalBenefit = 0;
   }
@@ -71,7 +71,7 @@ class OrderController {
   }
 
   getMenuInfo(name) {
-    return this.#preparedMenus.find((menu) => menu.name === name);
+    return this.#menuInfo.find((menu) => menu.name === name);
   }
 
   setBenefitHistory = (eventName, benefit) => {
