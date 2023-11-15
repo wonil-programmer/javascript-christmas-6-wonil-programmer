@@ -2,6 +2,7 @@ import { ASK_MESSAGE, SEPARATOR } from "./constant/Constant.js";
 import { Console } from "@woowacourse/mission-utils";
 import Validator from "./utils/Validator.js";
 import OutputView from "./OutputView.js";
+import Order from "./model/Order.js";
 
 const InputView = {
   async readDate() {
@@ -17,23 +18,15 @@ const InputView = {
     }
   },
 
-  async readMenu() {
+  async readOrder(menuInfo) {
     while (true) {
       try {
         const orderInput = await Console.readLineAsync(ASK_MESSAGE.menuInfo);
-        Validator.validateOrderForm(orderInput);
-        const menuArr = orderInput.split(SEPARATOR.comma);
-        const orderedMenu = new Map();
-        const storedName = [];
-        menuArr.forEach((menu) => {
-          const [menuName, menuQty] = menu.split(SEPARATOR.dash);
-          storedName.push(menuName);
-          Validator.validateDuplication(storedName);
-          orderedMenu.set(menuName, Number(menuQty));
-        });
-        Validator.validateOrderedMenu(orderedMenu);
+        Validator.validateOrderFormat(orderInput);
+        const orderedMenus = orderInput.split(SEPARATOR.comma);
+        const order = new Order(orderedMenus, menuInfo);
 
-        return orderedMenu;
+        return order;
       } catch (error) {
         OutputView.printErrorMessage(error);
       }
