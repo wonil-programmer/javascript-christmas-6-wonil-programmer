@@ -13,7 +13,6 @@ const Validator = {
       throw new Error(ERROR_MESSAGE.invalidDate);
     }
     const dateNum = Number(date);
-    console.log(dateNum);
     if (
       !(
         !isNaN(dateNum) &&
