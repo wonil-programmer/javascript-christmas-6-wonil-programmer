@@ -39,7 +39,7 @@ export const BADGE_CUT_OFF = Object.freeze({
 });
 
 export const REG_EXP = Object.freeze({
-  date: /\b(?:[1-9]|1\d|2[0-9]|3[01])\b/,
+  space: /.*\s+.*/,
   orderInput: /^([가-힣a-zA-Z]+-\d+)+(,[가-힣a-zA-Z]+-\d+)*$/,
 });
 

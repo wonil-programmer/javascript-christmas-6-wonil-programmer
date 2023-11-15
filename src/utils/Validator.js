@@ -9,7 +9,11 @@ import { MENU_INFO } from "../constant/Constant.js";
 
 const Validator = {
   validateDate(date) {
+    if (REG_EXP.space.test(date)) {
+      throw new Error(ERROR_MESSAGE.invalidDate);
+    }
     const dateNum = Number(date);
+    console.log(dateNum);
     if (
       !(
         !isNaN(dateNum) &&
