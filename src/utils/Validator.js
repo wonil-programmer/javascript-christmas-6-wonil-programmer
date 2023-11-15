@@ -15,33 +15,44 @@ const Validator = {
       throw new Error(ERROR_MESSAGE.invalidDate);
   },
 
-  validateOrderForm(orderInput) {
+  validateOrderFormat(orderInput) {
     if (!ORDER_INPUT_REG_EXP.test(orderInput)) {
       throw new Error(ERROR_MESSAGE.invalidOrder);
     }
   },
 
-  validateDuplication(array) {
-    const set = new Set(array);
-    if (set.size !== array.length) throw new Error(ERROR_MESSAGE.invalidOrder);
+  validateNameExistence(menuName) {
+    if (!MENU_INFO.some((menu) => menu.name === menuName)) {
+      throw new Error(ERROR_MESSAGE.invalidOrder);
+    }
   },
 
-  isValidMenuName(menuName) {
-    return MENU_INFO.some((menu) => menu.name === menuName);
+  validateQuantity(quantity) {
+    if (!Number.isInteger(quantity) || quantity <= 0) {
+      throw new Error(ERROR_MESSAGE.invalidOrder);
+    }
   },
 
-  isPositiveInt(number) {
-    return Number.isInteger(number) && number > 0;
-  },
-
-  validateOrderedMenu(orderedMenu) {
-    let totalQty = 0;
-    orderedMenu.forEach((quantity, name) => {
-      totalQty += quantity;
-      if (!this.isValidMenuName(name) || !this.isPositiveInt(quantity))
+  validateNameDuplication(existingItems, item) {
+    existingItems.forEach((existingItem) => {
+      if (existingItem.name === item.name)
         throw new Error(ERROR_MESSAGE.invalidOrder);
     });
-    if (totalQty > QUANTITY_LIMIT) {
+  },
+
+  validateTotalQty(items) {
+    let totalQuantity = 0;
+    items.forEach((item) => {
+      totalQuantity += item.quantity;
+    });
+
+    if (totalQuantity > QUANTITY_LIMIT) {
+      throw new Error(ERROR_MESSAGE.invalidOrder);
+    }
+  },
+
+  validateOnlyBeverage(categories) {
+    if (categories.every((category) => category === MENU_CATEGORY.beverage)) {
       throw new Error(ERROR_MESSAGE.invalidOrder);
     }
   },
