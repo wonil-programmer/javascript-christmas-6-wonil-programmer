@@ -33,7 +33,8 @@ export const BADGE_CUT_OFF = Object.freeze({
   star: 5_000,
 });
 
-export const ORDER_INPUT = /^([가-힣a-zA-Z]+-\d+)+(,[가-힣a-zA-Z]+-\d+)*$/;
+export const ORDER_INPUT_REG_EXP =
+  /^([가-힣a-zA-Z]+-\d+)+(,[가-힣a-zA-Z]+-\d+)*$/;
 
 export const SPECIAL_DATE = [3, 10, 17, 24, 25, 31];
 

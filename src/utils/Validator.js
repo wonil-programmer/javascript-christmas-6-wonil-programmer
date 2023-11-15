@@ -2,7 +2,7 @@ import {
   ERROR_MESSAGE,
   MENU_CATEGORY,
   DATE,
-  ORDER_INPUT,
+  ORDER_INPUT_REG_EXP,
   QUANTITY_LIMIT,
 } from "../constant/Constant.js";
 import { MENU_INFO } from "../constant/Constant.js";
@@ -16,8 +16,7 @@ const Validator = {
   },
 
   validateOrderForm(orderInput) {
-    const pattern = ORDER_INPUT;
-    if (!pattern.test(orderInput)) {
+    if (!ORDER_INPUT_REG_EXP.test(orderInput)) {
       throw new Error(ERROR_MESSAGE.invalidOrder);
     }
   },
