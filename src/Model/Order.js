@@ -19,14 +19,6 @@ class Order {
     this.#validateOnlyBeverage(this.#items);
   }
 
-  #validate() {
-    // 음료만 주문 처리 - v
-    // 없는 메뉴 처리 - v
-    // 개수 1 이상 아닐시 처리 - v
-    // 중복 메뉴 처리 - v
-    // 총 메뉴갯수 20개 초과 처리 - v
-  }
-
   #validateNameExistence(name) {
     Validator.validateNameExistence(name);
   }
