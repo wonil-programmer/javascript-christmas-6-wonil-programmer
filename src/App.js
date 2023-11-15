@@ -20,8 +20,6 @@ class App {
     OutputView.printGreetings();
     const visitDate = await InputView.readDate();
     await this.#orderController.placeOrder(visitDate);
-    OutputView.printResultHeader(visitDate);
-    this.#orderController.printOrderInfo();
   }
 
   prepareMenus(category) {
