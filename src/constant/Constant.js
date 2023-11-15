@@ -38,8 +38,10 @@ export const BADGE_CUT_OFF = Object.freeze({
   star: 5_000,
 });
 
-export const ORDER_INPUT_REG_EXP =
-  /^([가-힣a-zA-Z]+-\d+)+(,[가-힣a-zA-Z]+-\d+)*$/;
+export const REG_EXP = Object.freeze({
+  date: /\b(?:[1-9]|1\d|2[0-9]|3[01])\b/,
+  orderInput: /^([가-힣a-zA-Z]+-\d+)+(,[가-힣a-zA-Z]+-\d+)*$/,
+});
 
 export const GIFT_LIST = [
   { name: "샴페인 1개", price: 25_000, conditionPrice: 120_000 },

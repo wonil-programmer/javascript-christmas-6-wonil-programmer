@@ -2,7 +2,7 @@ import {
   ERROR_MESSAGE,
   MENU_CATEGORY,
   DATE,
-  ORDER_INPUT_REG_EXP,
+  REG_EXP,
   QUANTITY_LIMIT,
 } from "../constant/Constant.js";
 import { MENU_INFO } from "../constant/Constant.js";
@@ -10,13 +10,20 @@ import { MENU_INFO } from "../constant/Constant.js";
 const Validator = {
   validateDate(date) {
     const dateNum = Number(date);
-    if (isNaN(dateNum)) throw new Error(ERROR_MESSAGE.invalidDate);
-    if (dateNum < DATE.startDate || dateNum > DATE.endDate)
+    if (
+      !(
+        !isNaN(dateNum) &&
+        Number.isInteger(dateNum) &&
+        dateNum >= DATE.startDate &&
+        dateNum <= DATE.endDate
+      )
+    ) {
       throw new Error(ERROR_MESSAGE.invalidDate);
+    }
   },
 
   validateOrderFormat(orderInput) {
-    if (!ORDER_INPUT_REG_EXP.test(orderInput)) {
+    if (!REG_EXP.orderInput.test(orderInput)) {
       throw new Error(ERROR_MESSAGE.invalidOrder);
     }
   },
