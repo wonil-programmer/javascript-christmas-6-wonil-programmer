@@ -1,20 +1,31 @@
-import { EVENT_DISCOUNT_AMOUNT } from "./constant/Constant.js";
+import {
+  EVENT_DISCOUNT_AMOUNT,
+  DATE,
+  SPECIAL_DATE,
+} from "./constant/Constant.js";
+import Calculator from "./utils/Calculator.js";
 
 const Event = {
-  applyXMasDDay(date) {
-    return EVENT_DISCOUNT_AMOUNT.xMasDDay(date);
+  applyXMasDDay(visitDate) {
+    return visitDate <= DATE.xMasDate
+      ? EVENT_DISCOUNT_AMOUNT.xMasDDay(visitDate)
+      : 0;
   },
 
-  applySpecial() {
-    return EVENT_DISCOUNT_AMOUNT.special;
+  applySpecial(visitDate) {
+    return SPECIAL_DATE.includes(visitDate) ? EVENT_DISCOUNT_AMOUNT.special : 0;
   },
 
-  applyWeekend(mainDishCount) {
-    return mainDishCount * EVENT_DISCOUNT_AMOUNT.weekend;
+  applyWeekend(visitDate, order) {
+    const mainDishCount = order.countMain();
+    const isWeekend = Calculator.calculateIsWeekend(visitDate);
+    return isWeekend ? mainDishCount * EVENT_DISCOUNT_AMOUNT.weekend : 0;
   },
 
-  applyWeekday(dessertCount) {
-    return dessertCount * EVENT_DISCOUNT_AMOUNT.weekday;
+  applyWeekday(visitDate, order) {
+    const dessertCount = order.countDessert();
+    const isWeekend = Calculator.calculateIsWeekend(visitDate);
+    return !isWeekend ? dessertCount * EVENT_DISCOUNT_AMOUNT.weekday : 0;
   },
 };
 
